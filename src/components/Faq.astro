@@ -27,7 +27,7 @@ const faq = [
 ];
 ---
 
-<section class="band" id="colophon">
+<section class="band" id="faq">
   <div class="rail">
     <p class="eyebrow">О сайте</p>
     <h2>Что стоит знать до установки</h2>
@@ -43,18 +43,6 @@ const faq = [
         </details>
       ))}
     </div>
-
-    <aside class="colophon">
-      <h3>Колофон</h3>
-      <p>
-        Сайт собран на Astro и публикуется через GitHub Pages. Все скриншоты — реальный
-        canger.exe 0.1.0 на Windows, все цифры и контрольные суммы взяты из сборки и
-        заметок релиза.
-      </p>
-      <p class="mono meta">
-        Astro 7 · без клиентских фреймворков · скриншоты — реальный canger.exe 0.1.0 на Windows
-      </p>
-    </aside>
   </div>
 </section>
 
@@ -126,29 +114,5 @@ const faq = [
     padding: 0 44px 22px 0;
     color: var(--text-400);
     max-width: 76ch;
-  }
-
-  .colophon {
-    margin-top: clamp(38px, 5vw, 56px);
-    padding: 24px 26px;
-    border: 1px solid var(--hair);
-    border-inline-start: 2px solid var(--action);
-    border-radius: var(--radius);
-    background: var(--ink-850);
-  }
-  .colophon h3 {
-    font-size: 11.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--action);
-  }
-  .colophon p {
-    margin-top: 12px;
-    color: var(--text-400);
-    max-width: 74ch;
-  }
-  .colophon .meta {
-    color: var(--text-700);
-    font-size: 11.5px;
   }
 </style>
