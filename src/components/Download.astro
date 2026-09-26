@@ -1,0 +1,261 @@
+---
+const files = [
+  {
+    name: 'canger_0.1.0_x64-setup.exe',
+    kind: 'NSIS',
+    size: '3,1 МБ',
+    sha: '7de5ac0d764d1c5eb652e5926060abdf5497a3c00fa2530b16bf35fec368492d',
+    href: 'https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger_0.1.0_x64-setup.exe',
+  },
+  {
+    name: 'canger_0.1.0_x64_en-US.msi',
+    kind: 'MSI',
+    size: '4,4 МБ',
+    sha: 'cee2f90b5cad8f06d92b496d115557a9b11fa7eed268a4528a4975d7fa866883',
+    href: 'https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger_0.1.0_x64_en-US.msi',
+  },
+  {
+    name: 'canger.exe',
+    kind: 'portable',
+    size: '12,7 МБ',
+    sha: '8b41ef2417443614c609020641d431194203f303c252a9a2bc643f3c53287b4b',
+    href: 'https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger.exe',
+  },
+];
+---
+
+<section class="band" id="download">
+  <div class="rail">
+    <p class="eyebrow">Скачать</p>
+    <h2>Три файла, одна версия</h2>
+    <p class="lede">
+      Всё опубликовано в <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">релизе 0.1.0</a>.
+      SHA-256 — чтобы убедиться, что файл не порезали и не подменили.
+    </p>
+
+    <div class="dl">
+      <div class="dl-head">
+        <span class="mono">файл</span>
+        <span class="mono">размер</span>
+        <span class="mono">sha-256</span>
+        <span></span>
+      </div>
+      {files.map((file) => (
+        <div class="dl-row">
+          <div class="file-name">
+            <span>{file.name}</span>
+            <span class="mono kind">{file.kind}</span>
+          </div>
+          <span class="mono size">{file.size}</span>
+          <div class="hash">
+            <code class="mono">{file.sha.slice(0, 24)}…</code>
+            <button type="button" data-sha={file.sha} aria-label="Скопировать полный SHA-256 файла {file.name}">
+              копировать
+            </button>
+          </div>
+          <a class="btn btn--action get" href={file.href} download>Скачать</a>
+        </div>
+      ))}
+    </div>
+
+    <p class="warn">
+      <strong>Установщики не подписаны Authenticode.</strong> Windows SmartScreen может
+      показать предупреждение — это ожидаемо для open-source сборки без сертификата.
+      Сверьте SHA-256 с таблицей выше.
+    </p>
+
+    <div class="split">
+      <div>
+        <h3 class="mono">требования</h3>
+        <p>Windows x64. Linux и macOS никогда не собирались и не тестировались, поэтому
+        поддержкой не заявляются.</p>
+      </div>
+      <div>
+        <h3 class="mono">сборка из исходников</h3>
+        <p>Node.js 20.19+ или 22.12+, Rust 1.89+, <code class="mono">cargo tauri build</code>.
+        Полная инструкция — в README репозитория.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-sha]');
+
+  const announce = (button: HTMLButtonElement, text: string) => {
+    const original = button.textContent;
+    button.textContent = text;
+    button.disabled = true;
+    window.setTimeout(() => {
+      button.textContent = original;
+      button.disabled = false;
+    }, 1600);
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const value = button.dataset.sha ?? '';
+      try {
+        await navigator.clipboard.writeText(value);
+        announce(button, 'скопировано');
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = value;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.append(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+        announce(button, 'скопировано');
+      }
+    });
+  });
+</script>
+
+<style>
+  .band {
+    padding: clamp(56px, 8vw, 96px) 0;
+    border-top: 1px solid var(--hair);
+  }
+  h2 {
+    margin: 18px 0 0;
+    font-size: var(--step-2);
+  }
+  .band .lede {
+    margin-top: 18px;
+    color: var(--text-400);
+    max-width: 62ch;
+  }
+
+  .dl {
+    margin-top: clamp(28px, 3.5vw, 42px);
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .dl-head,
+  .dl-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) 90px minmax(0, 1.2fr) 120px;
+    gap: 18px;
+    align-items: center;
+    padding: 16px 20px;
+  }
+  .dl-head {
+    background: var(--ink-800);
+    border-bottom: 1px solid var(--hair);
+    color: var(--text-700);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .dl-row {
+    background: var(--ink-850);
+    border-bottom: 1px solid var(--hair);
+  }
+  .dl-row:last-child {
+    border-bottom: 0;
+  }
+  .file-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 14.5px;
+    word-break: break-all;
+  }
+  .kind {
+    padding: 2px 7px;
+    border: 1px solid var(--action-line);
+    border-radius: 3px;
+    color: var(--action);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .size {
+    color: var(--text-600);
+  }
+  .hash {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hash code {
+    color: var(--text-600);
+    font-size: 11.5px;
+  }
+  .hash button {
+    padding: 3px 8px;
+    border: 1px solid var(--hair-strong);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--text-700);
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    transition: color 0.18s ease, border-color 0.18s ease;
+  }
+  .hash button:hover:not(:disabled) {
+    color: var(--action);
+    border-color: var(--action-line);
+  }
+  .hash button:disabled {
+    color: var(--ok);
+    cursor: default;
+  }
+  .get {
+    justify-content: center;
+    padding: 9px 14px;
+    font-size: 13.5px;
+  }
+
+  .warn {
+    margin-top: 22px;
+    padding: 16px 20px;
+    border: 1px solid color-mix(in srgb, var(--warn) 32%, transparent);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--warn) 8%, transparent);
+    color: #e5d3a4;
+    font-size: 14.5px;
+  }
+  .warn strong {
+    color: #f2dfa8;
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(20px, 3vw, 44px);
+    margin-top: 36px;
+  }
+  .split h3 {
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-700);
+  }
+  .split p {
+    margin-top: 8px;
+    color: var(--text-400);
+    font-size: 14.5px;
+  }
+  .split code {
+    color: var(--action);
+  }
+
+  @media (max-width: 900px) {
+    .dl-head {
+      display: none;
+    }
+    .dl-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+    .get {
+      justify-self: start;
+    }
+  }
+</style>

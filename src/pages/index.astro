@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import Disk from '../components/Disk.astro';
+import Loaders from '../components/Loaders.astro';
+import Download from '../components/Download.astro';
+import Colophon from '../components/Colophon.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="canger — лаунчер Minecraft, где у каждой версии своя папка с модами"
+  description="canger — настольный лаунчер Minecraft на Tauri 2 и Rust. Vanilla, Fabric, Forge и NeoForge из официальных источников, Java подбирается автоматически, у каждой версии своя папка с модами, мирами и настройками. Windows x64."
+>
+  <Header />
+  <main id="main">
+    <Hero />
+    <Problem />
+    <Disk />
+    <Loaders />
+    <Download />
+    <Colophon />
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  main {
+    display: block;
+  }
+</style>

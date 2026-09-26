@@ -1,0 +1,148 @@
+---
+const release = 'https://github.com/Huiotca22/Canger/releases/tag/v0.1.0';
+const repo = 'https://github.com/Huiotca22/Canger';
+---
+
+<section class="hero">
+  <div class="rail hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Релиз 0.1.0 · Windows x64 · MIT</p>
+      <h1>
+        У каждой версии Minecraft
+        <span class="mark-rose">своя папка</span> с модами.
+      </h1>
+      <p class="lede">
+        canger ставит Vanilla, Fabric, Forge и NeoForge из официальных источников,
+        сам подбирает нужную Java и запускает игру с модами только той версии,
+        которую вы выбрали. Профилей нет — есть версии.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn--action" href={release}>Скачать 0.1.0</a>
+        <a class="btn btn--quiet" href={repo}>Исходный код</a>
+      </div>
+      <p class="hero-fine">
+        Установщик 3,1 МБ. Java подбирается автоматически, ставить руками не нужно.
+      </p>
+    </div>
+
+    <figure class="hero-shot">
+      <div class="screen">
+        <img
+          src="/app-home.png"
+          width="700"
+          height="400"
+          alt="Главное окно canger: слева вертикальный рельс разделов, справа карточка новости и кнопка «Играть»"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <figcaption class="mono">
+        canger.exe 0.1.0 — 700×400. Скриншот собранного приложения, не макет.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="rail">
+    <dl class="facts">
+      <div><dt class="mono">802</dt><dd>версии в каталоге</dd></div>
+      <div><dt class="mono">36 / 25</dt><dd>тестов Rust и Node</dd></div>
+      <div><dt class="mono">4</dt><dd>лоадера из официальных API</dd></div>
+      <div><dt class="mono">0</dt><dd>профилей и общих папок модов</dd></div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: clamp(56px, 9vw, 104px) 0 clamp(40px, 5vw, 60px);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  h1 {
+    margin: 20px 0 0;
+    font-size: var(--step-3);
+    max-width: 15ch;
+  }
+  .mark-rose {
+    color: var(--action);
+  }
+  .hero-copy .lede {
+    margin-top: 22px;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+  .hero-fine {
+    margin-top: 16px;
+    font-size: 13.5px;
+    color: var(--text-700);
+  }
+
+  .hero-shot {
+    margin: 0;
+  }
+  .screen {
+    position: relative;
+    border: 1px solid var(--hair-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--ink-700);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 34px 70px -30px rgba(232, 116, 159, 0.34),
+      0 18px 40px -24px rgba(0, 0, 0, 0.9);
+  }
+  .screen img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  figcaption {
+    margin-top: 12px;
+    color: var(--text-700);
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin: clamp(44px, 6vw, 76px) 0 0;
+    padding: 0;
+    background: var(--hair);
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .facts > div {
+    padding: 18px 20px;
+    background: var(--ink-850);
+  }
+  .facts dt {
+    font-size: 19px;
+    color: var(--action);
+    letter-spacing: -0.02em;
+  }
+  .facts dd {
+    margin: 4px 0 0;
+    color: var(--text-600);
+    font-size: 13.5px;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

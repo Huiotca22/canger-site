@@ -1,0 +1,128 @@
+---
+const tree = [
+  { depth: 0, text: '%APPDATA%\\.minecraft\\', note: 'общий корень' },
+  { depth: 1, text: 'versions\\<id>\\', note: 'JSON, JAR и natives этой версии' },
+  { depth: 2, text: 'mods\\', note: 'моды только этой версии', tone: 'hot' },
+  { depth: 2, text: 'saves\\', note: 'миры только этой версии', tone: 'hot' },
+  { depth: 2, text: 'config\\', note: 'конфиги модов', tone: 'hot' },
+  { depth: 2, text: 'options.txt', note: 'настройки графики и управления' },
+  { depth: 1, text: 'libraries\\', note: 'общие библиотеки' },
+  { depth: 1, text: 'assets\\', note: 'общие ресурсы' },
+  { depth: 1, text: 'runtime\\', note: 'Java' },
+];
+---
+
+<section class="band" id="disk">
+  <div class="rail">
+    <p class="eyebrow">На диске</p>
+    <h2>Игровой каталог — это сама версия</h2>
+    <p class="lede">
+      <code class="mono">versions/&lt;id&gt;</code> передаётся как <code class="mono">--gameDir</code>.
+      Общие библиотеки и ресурсы лежат выше и не копируются в каждую папку.
+    </p>
+
+    <div class="term" role="img" aria-label="Структура папок canger">
+      <div class="term-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="term-title mono">.minecraft</span>
+      </div>
+      <ul>
+        {tree.map((row) => (
+          <li style={`--depth:${row.depth}`} class={row.tone === 'hot' ? 'hot' : ''}>
+            <code>{row.text}</code>
+            <span class="mono note">{row.note}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <p class="aside">
+      Старые моды из общего <code class="mono">.minecraft\mods</code> автоматически не
+      переносятся. Это намеренно: переносить значит смешивать. Скопируйте нужное в
+      <code class="mono">versions\&lt;id&gt;\mods</code> руками — один раз.
+    </p>
+  </div>
+</section>
+
+<style>
+  .band {
+    padding: clamp(56px, 8vw, 96px) 0;
+    border-top: 1px solid var(--hair);
+  }
+  h2 {
+    margin: 18px 0 0;
+    font-size: var(--step-2);
+  }
+  .band .lede {
+    margin-top: 18px;
+    color: var(--text-400);
+    max-width: 62ch;
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    color: var(--action);
+  }
+
+  .term {
+    margin-top: clamp(28px, 3.5vw, 42px);
+    border: 1px solid var(--hair-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--ink-850);
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 14px;
+    background: var(--ink-700);
+    border-bottom: 1px solid var(--hair);
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--ink-600);
+  }
+  .term-title {
+    margin-inline-start: 8px;
+    color: var(--text-700);
+    font-size: 11.5px;
+  }
+  .term ul {
+    margin: 0;
+    padding: 18px 20px;
+    list-style: none;
+  }
+  .term li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    align-items: baseline;
+    padding: 3px 0;
+    padding-inline-start: calc(var(--depth) * 22px);
+  }
+  .term code {
+    color: var(--text-100);
+  }
+  .term .note {
+    color: var(--text-700);
+    font-size: 11.5px;
+  }
+  .term li.hot code {
+    color: var(--action);
+  }
+  .term li.hot .note {
+    color: var(--text-600);
+  }
+
+  .aside {
+    margin-top: 22px;
+    padding-inline-start: 18px;
+    border-inline-start: 2px solid var(--action-line);
+    color: var(--text-600);
+    font-size: 14.5px;
+    max-width: 74ch;
+  }
+</style>

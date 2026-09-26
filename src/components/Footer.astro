@@ -1,0 +1,53 @@
+---
+const repo = 'https://github.com/Huiotca22/Canger';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-foot">
+  <div class="rail foot-row">
+    <p class="mono">canger 0.1.0 · MIT · {year}</p>
+    <nav aria-label="Ссылки">
+      <a href={repo}>Репозиторий</a>
+      <a href={`${repo}/releases/tag/v0.1.0`}>Релиз</a>
+      <a href={`${repo}/blob/main/CHANGELOG.md`}>Изменения</a>
+      <a href={`${repo}/blob/main/README.md`}>Установка из исходников</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-foot {
+    border-top: 1px solid var(--hair);
+    padding: 30px 0 44px;
+  }
+  .foot-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+  }
+  p {
+    color: var(--text-700);
+    font-size: 12px;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-inline-start: auto;
+  }
+  nav a {
+    color: var(--text-600);
+    font-size: 13.5px;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  nav a:hover {
+    color: var(--action);
+  }
+  @media (max-width: 640px) {
+    nav {
+      margin-inline-start: 0;
+    }
+  }
+</style>

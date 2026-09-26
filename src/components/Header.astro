@@ -1,0 +1,87 @@
+---
+const links = [
+  { href: '#problem', label: 'Проблема' },
+  { href: '#disk', label: 'На диске' },
+  { href: '#loaders', label: 'Лоадеры' },
+  { href: '#download', label: 'Скачать' },
+  { href: '#colophon', label: 'О сайте' },
+];
+---
+
+<header class="site-head">
+  <div class="rail head-row">
+    <a class="mark" href="/">
+      <img src="/icon.svg" alt="" width="26" height="26" />
+      <span>canger</span>
+    </a>
+    <nav aria-label="Разделы">
+      <ul>
+        {links.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a class="btn btn--action head-cta" href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Скачать 0.1.0</a>
+  </div>
+</header>
+
+<style>
+  .site-head {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--ink-900) 86%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .head-row {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    height: 66px;
+  }
+  .mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-100);
+    text-decoration: none;
+  }
+  .mark img {
+    display: block;
+    border-radius: 6px;
+  }
+  nav {
+    margin-inline-start: auto;
+  }
+  nav ul {
+    display: flex;
+    gap: 26px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  nav a {
+    color: var(--text-600);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  nav a:hover {
+    color: var(--text-100);
+  }
+  .head-cta {
+    padding: 9px 16px;
+    font-size: 14px;
+  }
+  @media (max-width: 860px) {
+    nav {
+      display: none;
+    }
+    .head-cta {
+      margin-inline-start: auto;
+    }
+  }
+</style>

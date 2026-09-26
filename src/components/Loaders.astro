@@ -1,0 +1,109 @@
+---
+const loaders = [
+  {
+    name: 'Vanilla',
+    tag: 'релизы и снапшоты',
+    body: 'Полный список релизов и снапшотов Mojang, включая схему 26.x.',
+  },
+  {
+    name: 'Fabric',
+    tag: 'meta.fabricmc.net',
+    body: 'Одна последняя совместимая сборка на каждую версию Minecraft. Устанавливается в общий content root.',
+  },
+  {
+    name: 'Forge',
+    tag: '1.13 и новее',
+    body: 'Автоматическая установка официальным installer: проверка SHA-1, запуск --installClient, валидация созданного профиля и родительского клиента. Рекомендуемая сборка приоритетнее последней.',
+  },
+  {
+    name: 'NeoForge',
+    tag: 'только стабильные',
+    body: 'Список берётся из официального maven-metadata.xml, installer сверяется по SHA-256, после установки проверяются id, inheritsFrom и main class.',
+  },
+  {
+    name: 'Моды',
+    tag: 'Modrinth',
+    body: 'Каталог Modrinth, установка файла по переданной контрольной сумме. Несовместимые с выбранной версией файлы отключаются до старта игры.',
+  },
+];
+---
+
+<section class="band" id="loaders">
+  <div class="rail">
+    <p class="eyebrow">Что поддерживается</p>
+    <h2>Каталог собирается, а не зашит</h2>
+    <p class="lede">
+      Версии и сборки берутся из официальных manifest-файлов. Если Mojang или Forge
+      выпустил релиз, он появится в лаунчере без обновления программы.
+    </p>
+
+    <ul class="loader-list">
+      {loaders.map((loader) => (
+        <li>
+          <div class="loader-name">
+            <h3>{loader.name}</h3>
+            <span class="mono">{loader.tag}</span>
+          </div>
+          <p>{loader.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .band {
+    padding: clamp(56px, 8vw, 96px) 0;
+    border-top: 1px solid var(--hair);
+  }
+  h2 {
+    margin: 18px 0 0;
+    font-size: var(--step-2);
+  }
+  .band .lede {
+    margin-top: 18px;
+    color: var(--text-400);
+    max-width: 62ch;
+  }
+
+  .loader-list {
+    margin: clamp(28px, 3.5vw, 44px) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .loader-list li {
+    display: grid;
+    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+    gap: 12px clamp(20px, 4vw, 56px);
+    padding: 24px 0;
+    border-top: 1px solid var(--hair);
+  }
+  .loader-list li:last-child {
+    border-bottom: 1px solid var(--hair);
+  }
+  .loader-name h3 {
+    font-size: var(--step-1);
+  }
+  .loader-name span {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-700);
+    font-size: 11.5px;
+  }
+  .loader-list p {
+    color: var(--text-400);
+    max-width: 62ch;
+  }
+  .loader-list li:hover .loader-name h3 {
+    color: var(--action);
+  }
+  .loader-list li {
+    transition: background-color 0.2s ease;
+  }
+
+  @media (max-width: 760px) {
+    .loader-list li {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

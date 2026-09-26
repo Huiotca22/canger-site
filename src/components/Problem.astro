@@ -1,0 +1,127 @@
+---
+const usual = [
+  ['Одна папка mods на всё', 'Мод от Fabric 1.21 попадает в общий набор вместе с модами 26.3.'],
+  ['Профили', 'Отдельный профиль на каждую версию: их надо создавать, переименовывать и держать в голове.'],
+  ['Списки совместимости', 'Несовместимость обнаруживается после двойного клика и сообщения об ошибке.'],
+  ['Java вручную', 'Нужен major, который совпадёт с требованиями игры и сборки.'],
+];
+const canger = [
+  ['versions/<id>/mods', 'Игровой каталог версии — это сам versions/<id>. Чужие моды туда физически не попадают.'],
+  ['Версия вместо профиля', 'Выбрал версию — получил папку, моды, миры и настройки. Создавать нечего.'],
+  ['Проверка до запуска', 'fabric.mod.json читается до старта Java: несовпадение по Minecraft или Java останавливает запуск с текстом ошибки.'],
+  ['Java из Adoptium', 'Нужный major скачивается сам и сверяется по SHA-256.'],
+];
+---
+
+<section class="band" id="problem">
+  <div class="rail">
+    <p class="eyebrow">Проблема</p>
+    <h2>Ошибка «Incompatible mods found»<br />начинается с общей папки</h2>
+    <p class="lede">
+      Мод — это не файл, а обязательство: конкретная версия Minecraft, конкретный
+      загрузчик, конкретный диапазон Java. Сложите такие обязательства в одну папку,
+      и рано или поздно они столкнутся.
+    </p>
+
+    <div class="compare">
+      <div class="col col--bad">
+        <h3 class="mono">обычный лаунчер</h3>
+        <dl>
+          {usual.map(([term, desc]) => (
+            <div>
+              <dt>{term}</dt>
+              <dd>{desc}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div class="col col--good">
+        <h3 class="mono">canger</h3>
+        <dl>
+          {canger.map(([term, desc]) => (
+            <div>
+              <dt>{term}</dt>
+              <dd>{desc}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .band {
+    padding: clamp(56px, 8vw, 96px) 0;
+    border-top: 1px solid var(--hair);
+  }
+  h2 {
+    margin: 18px 0 0;
+    font-size: var(--step-2);
+  }
+  .band .lede {
+    margin-top: 18px;
+    color: var(--text-400);
+    max-width: 62ch;
+  }
+
+  .compare {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: clamp(32px, 4vw, 48px);
+    background: var(--hair);
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .col {
+    padding: clamp(20px, 2.6vw, 32px);
+    background: var(--ink-850);
+  }
+  .col h3 {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .col--bad h3 {
+    color: var(--text-700);
+  }
+  .col--good h3 {
+    color: var(--action);
+  }
+  .col dl {
+    margin: 0;
+  }
+  .col dl > div {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hair);
+  }
+  .col dl > div:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .col dt {
+    font-weight: 600;
+    font-size: 15.5px;
+  }
+  .col--good dt {
+    color: var(--action);
+  }
+  .col--bad dt {
+    color: var(--text-600);
+  }
+  .col dd {
+    margin: 5px 0 0;
+    color: var(--text-400);
+    font-size: 14.5px;
+  }
+
+  @media (max-width: 760px) {
+    .compare {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
