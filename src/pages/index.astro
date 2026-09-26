@@ -28,7 +28,7 @@ import Footer from '../components/Footer.astro';
 
 <script>
   const targets = document.querySelectorAll<HTMLElement>(
-    '.facts > div, .term li, .loader-list li, [data-reveal], section'
+    '.facts > div, .term li, .loader-list li, [data-reveal]'
   );
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -47,18 +47,12 @@ import Footer from '../components/Footer.astro';
       { rootMargin: '0px 0px -12% 0px', threshold: 0.12 }
     );
 
-    targets.forEach((el) => {
-      el.classList.add('will-reveal');
-      io.observe(el);
-    });
+    targets.forEach((el) => io.observe(el));
   }
 </script>
 
 <style>
   main {
     display: block;
-  }
-  .will-reveal {
-    opacity: 0;
   }
 </style>
