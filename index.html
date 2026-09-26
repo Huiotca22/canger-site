@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>canger — лаунчер Minecraft с отдельной папкой модов на каждую версию</title>
+<meta name="description" content="canger — настольный лаунчер Minecraft на Tauri 2 и Rust. Vanilla, Fabric, Forge и NeoForge из официальных источников, Java подбирается автоматически, у каждой версии своя папка с модами, мирами и настройками. Windows x64.">
+<meta name="theme-color" content="#1e151a">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="canger — лаунчер Minecraft">
+<meta property="og:description" content="У каждой версии своя папка с модами. Vanilla, Fabric, Forge и NeoForge, Java подбирается сама. Windows x64.">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<style>
+  :root {
+    --bg: #1e151a;
+    --bg-deep: #150e12;
+    --panel: rgba(42, 28, 35, 0.55);
+    --panel-solid: #241a20;
+    --line: rgba(255, 255, 255, 0.10);
+    --line-strong: rgba(255, 255, 255, 0.18);
+    --text: #f3eef1;
+    --muted: #b3a4ad;
+    --dim: #8b7d86;
+    --rose: #d47ba6;
+    --violet: #7a4fe0;
+    --grad: linear-gradient(120deg, #e08cb4 0%, #c25fa0 48%, #7a4fe0 100%);
+    --radius: 18px;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -20% -10% auto -10%;
+    height: 70vh;
+    background:
+      radial-gradient(60% 60% at 20% 20%, rgba(208, 123, 166, 0.30), transparent 70%),
+      radial-gradient(50% 50% at 80% 10%, rgba(122, 79, 224, 0.28), transparent 70%);
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  a { color: var(--rose); }
+  a:hover { color: #f0a8c8; }
+  :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 6px; }
+
+  header {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(18px);
+    background: rgba(30, 21, 26, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; gap: 20px; height: 62px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
+  .brand img { width: 28px; height: 28px; border-radius: 8px; display: block; }
+  .nav-links { margin-left: auto; display: flex; align-items: center; gap: 22px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; }
+  .nav-links a:hover { color: var(--text); }
+  .btn-nav {
+    padding: 8px 16px; border-radius: 10px; font-size: 14px; font-weight: 600;
+    background: var(--grad); color: #1a1015 !important; text-decoration: none;
+  }
+
+  .hero { padding: 84px 0 60px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 13px; border-radius: 999px;
+    background: var(--panel); border: 1px solid var(--line);
+    font-size: 13px; color: var(--muted);
+    backdrop-filter: blur(10px);
+  }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; }
+  h1 {
+    margin: 22px 0 0;
+    font-size: clamp(34px, 6vw, 62px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    max-width: 15ch;
+  }
+  h1 em { font-style: normal; white-space: nowrap; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lede { margin: 22px 0 0; font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 60ch; }
+  .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border-radius: 13px;
+    font-size: 16px; font-weight: 650; text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--grad); color: #1a1015; box-shadow: 0 10px 30px rgba(194, 95, 160, 0.28); }
+  .btn-primary:hover { color: #1a1015; filter: brightness(1.07); }
+  .btn-ghost { background: var(--panel); border-color: var(--line-strong); color: var(--text); backdrop-filter: blur(10px); }
+  .btn-ghost:hover { color: var(--text); border-color: var(--rose); }
+  .note { margin-top: 16px; font-size: 13.5px; color: var(--dim); }
+
+  .shot {
+    margin-top: 52px; position: relative;
+    border-radius: 22px; padding: 14px;
+    background: var(--panel); border: 1px solid var(--line);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  }
+  .shot img { display: block; width: 100%; border-radius: 12px; }
+  .shot figcaption { margin-top: 12px; font-size: 13px; color: var(--dim); }
+
+  section { padding: 68px 0; border-top: 1px solid var(--line); }
+  h2 { margin: 0 0 12px; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.02em; font-weight: 750; }
+  .sub { margin: 0 0 34px; color: var(--muted); max-width: 62ch; }
+
+  .cards { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .card {
+    padding: 24px; border-radius: var(--radius);
+    background: var(--panel); border: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+  }
+  .card h3 { margin: 0 0 8px; font-size: 17px; font-weight: 700; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .card code, code {
+    font-family: var(--mono); font-size: 0.92em;
+    background: rgba(0, 0, 0, 0.35); border: 1px solid var(--line);
+    padding: 1px 6px; border-radius: 6px; color: #f0c4dc;
+  }
+
+  .tree {
+    font-family: var(--mono); font-size: 14px; line-height: 1.85;
+    background: var(--panel-solid); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 24px; overflow-x: auto; margin: 0;
+  }
+  .tree .c { color: var(--dim); }
+  .tree .k { color: #f0c4dc; }
+  .tree .n { color: #b8e0c8; }
+
+  .files { display: grid; gap: 14px; }
+  .file {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+    padding: 18px 22px; border-radius: var(--radius);
+    background: var(--panel); border: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+  }
+  .file .meta { flex: 1 1 240px; min-width: 0; }
+  .file .name { font-weight: 650; font-size: 15.5px; }
+  .file .sum { font-family: var(--mono); font-size: 11.5px; color: var(--dim); word-break: break-all; margin-top: 3px; }
+  .file .dl {
+    padding: 10px 18px; border-radius: 10px; font-size: 14px; font-weight: 650;
+    background: var(--grad); color: #1a1015; text-decoration: none; white-space: nowrap;
+  }
+  .file .dl:hover { color: #1a1015; filter: brightness(1.07); }
+  .copy {
+    padding: 9px 14px; border-radius: 9px; cursor: pointer;
+    background: transparent; border: 1px solid var(--line-strong); color: var(--muted); font-size: 13px;
+    font-family: inherit;
+  }
+  .copy:hover { color: var(--text); border-color: var(--rose); }
+
+  .warn {
+    margin-top: 22px; padding: 16px 20px; border-radius: 14px;
+    background: rgba(234, 179, 8, 0.08); border: 1px solid rgba(234, 179, 8, 0.28);
+    color: #e8d3a0; font-size: 14.5px;
+  }
+  .list { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .list li { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); }
+  .list li::before { content: "▸"; color: var(--rose); font-weight: 700; line-height: 1.5; }
+  .list strong { color: var(--text); font-weight: 650; }
+
+  footer { padding: 44px 0 60px; border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; }
+  .foot { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .foot a { color: var(--muted); }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    .nav-links a:not(.btn-nav) { display: none; }
+    .hero { padding: 54px 0 40px; }
+    section { padding: 48px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><img src="assets/icon.svg" alt=""> canger</a>
+    <nav class="nav-links">
+      <a href="#why">Зачем</a>
+      <a href="#download">Скачать</a>
+      <a href="https://github.com/Huiotca22/Canger">GitHub</a>
+      <a class="btn-nav" href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Скачать 0.1.0</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <span class="badge"><span class="dot"></span> версия 0.1.0 · Windows x64 · MIT</span>
+      <h1>У каждой версии Minecraft <em>своя папка</em> с модами.</h1>
+      <p class="lede">
+        canger ставит Vanilla, Fabric, Forge и NeoForge из официальных источников,
+        сам подбирает подходящую Java и запускает игру с модами только той версии,
+        которую вы выбрали. Профилей нет — есть версии.
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Скачать 0.1.0</a>
+        <a class="btn btn-ghost" href="https://github.com/Huiotca22/Canger">Исходный код</a>
+      </div>
+      <p class="note">Установщик 3,1 МБ. Ничего доустанавливать не нужно: Java подбирается автоматически.</p>
+
+      <figure class="shot">
+        <img src="assets/app-home.png" width="700" height="400" alt="Главное окно canger: каталог версий, новости и кнопка «Играть»">
+        <figcaption>Главное окно. Настоящий скриншот собранного приложения, 700×400.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="why">
+      <h2>Почему версии, а не профили</h2>
+      <p class="sub">
+        Один профиль на все версии — это путь к ошибке «Incompatible mods found»:
+        мод от Fabric 1.21 не запускается на 26.3. В canger игровая папка — это сама
+        версия, поэтому чужие моды в неё физически не попадают.
+      </p>
+      <div class="cards">
+        <div class="card">
+          <h3>Моды живут в своей папке</h3>
+          <p><code>versions/&lt;id&gt;/mods</code> — отдельная папка для каждой технической версии. Копировать моды при переключении не нужно.</p>
+        </div>
+        <div class="card">
+          <h3>Миры и настройки не смешиваются</h3>
+          <p>Свои <code>saves</code>, <code>config</code>, <code>resourcepacks</code>, <code>shaderpacks</code>, <code>logs</code> и <code>options.txt</code> у каждой версии.</p>
+        </div>
+        <div class="card">
+          <h3>Несовместимые моды ловятся до запуска</h3>
+          <p>Перед стартом Java проверяется <code>fabric.mod.json</code>: если мод требует другую версию Minecraft или другой диапазон Java — запуск блокируется с понятным текстом.</p>
+        </div>
+        <div class="card">
+          <h3>Java подбирается сама</h3>
+          <p>Нужный мажор версии скачивается с Adoptium и проверяется по SHA-256. Ставить Java вручную не нужно.</p>
+        </div>
+        <div class="card">
+          <h3>Общее не дублируется</h3>
+          <p><code>libraries</code>, <code>assets</code> и <code>objects</code> хранятся один раз на всех версиях, а не копируются в каждую папку.</p>
+        </div>
+        <div class="card">
+          <h3>Скачивания проверяются</h3>
+          <p>Installer-ы Forge и NeoForge, клиент Mojang, библиотеки и ассеты проверяются по контрольным суммам. Загрузка идёт во временный файл и переименовывается атомарно.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="layout">
+      <h2>Как это устроено на диске</h2>
+      <p class="sub">Игровой каталог версии — это сам <code>versions/&lt;id&gt;</code>, он и передаётся как <code>--gameDir</code>.</p>
+      <pre class="tree"><span class="c">%APPDATA%\.minecraft\</span>
+  versions\&lt;id&gt;\          <span class="c">JSON, JAR и natives этой версии</span>
+  versions\&lt;id&gt;\mods\     <span class="n">моды только этой версии</span>
+  versions\&lt;id&gt;\saves\    <span class="n">миры только этой версии</span>
+  versions\&lt;id&gt;\config\   <span class="n">конфиги модов</span>
+  versions\&lt;id&gt;\options.txt
+  libraries\               <span class="c">общие библиотеки</span>
+  assets\                  <span class="c">общие ресурсы</span>
+  runtime\                 <span class="c">Java</span></pre>
+      <p class="note" style="margin-top:16px">
+        Старые моды из общего <code>.minecraft\mods</code> автоматически не переносятся — это сделано намеренно,
+        чтобы не подмешать несовместимый набор. Скопируйте нужное в <code>versions\&lt;id&gt;\mods</code> руками.
+      </p>
+    </section>
+
+    <section id="loaders">
+      <h2>Что поддерживается</h2>
+      <p class="sub">Каталог собирается из официальных manifest-файлов, а не из захардкоженного списка.</p>
+      <ul class="list">
+        <li><strong>Vanilla и снапшоты</strong> — полный список релизов и снапшотов Mojang.</li>
+        <li><strong>Fabric</strong> — одна последняя совместимая сборка на каждую версию Minecraft.</li>
+        <li><strong>Forge 1.13+</strong> — автоматическая установка через официальный installer с проверкой SHA-1 и валидацией созданного профиля.</li>
+        <li><strong>NeoForge</strong> — последняя стабильная сборка для точной версии Minecraft; installer проверяется по SHA-256.</li>
+        <li><strong>Моды</strong> — каталог Modrinth, установка по контрольной сумме, блокировка несовместимых файлов до запуска.</li>
+      </ul>
+    </section>
+
+    <section id="shots">
+      <h2>Приложение</h2>
+      <p class="sub">Оба скриншота сняты с собранного <code>canger.exe</code>, а не нарисованы.</p>
+      <div class="cards">
+        <figure class="card" style="margin:0">
+          <img src="assets/app-versions.png" width="700" height="400" alt="Вкладка «Версии»: каталог из 802 версий с фильтрами и карточками Fabric и Forge" style="display:block;width:100%;border-radius:12px">
+          <figcaption style="margin-top:12px;font-size:13.5px;color:var(--dim)">
+            Вкладка «Версии»: каталог с фильтрами, карточки Fabric и Forge, отметки об установленном.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="download">
+      <h2>Скачать 0.1.0</h2>
+      <p class="sub">Файлы из <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">релиза на GitHub</a>. SHA-256 — для проверки целостности.</p>
+      <div class="files">
+        <div class="file">
+          <div class="meta">
+            <div class="name">canger_0.1.0_x64-setup.exe <span style="color:var(--dim);font-weight:400">· 3,1 МБ</span></div>
+            <div class="sum">48f0b26aca5a892121739ad57dae063a786d2d81fe933f0dfd004c5b4a98ac12</div>
+          </div>
+          <button class="copy" data-copy="48f0b26aca5a892121739ad57dae063a786d2d81fe933f0dfd004c5b4a98ac12">Скопировать</button>
+          <a class="dl" href="https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger_0.1.0_x64-setup.exe">NSIS</a>
+        </div>
+        <div class="file">
+          <div class="meta">
+            <div class="name">canger_0.1.0_x64_en-US.msi <span style="color:var(--dim);font-weight:400">· 4,4 МБ</span></div>
+            <div class="sum">a874a9251da3ce54296d086d60fcaefbee6c3870148353b250469e8b812c1275</div>
+          </div>
+          <button class="copy" data-copy="a874a9251da3ce54296d086d60fcaefbee6c3870148353b250469e8b812c1275">Скопировать</button>
+          <a class="dl" href="https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger_0.1.0_x64_en-US.msi">MSI</a>
+        </div>
+        <div class="file">
+          <div class="meta">
+            <div class="name">canger.exe <span style="color:var(--dim);font-weight:400">· 12,7 МБ · portable</span></div>
+            <div class="sum">a35544c17aecad5abf9fc674e52efb49e0642a280a988e35c9768fbbdbc5e606</div>
+          </div>
+          <button class="copy" data-copy="a35544c17aecad5abf9fc674e52efb49e0642a280a988e35c9768fbbdbc5e606">Скопировать</button>
+          <a class="dl" href="https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger.exe">Portable</a>
+        </div>
+      </div>
+      <div class="warn">
+        Установщики не подписаны Authenticode, поэтому Windows SmartScreen может показать предупреждение.
+        Проверьте SHA-256 — значения выше совпадают с <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">страницей релиза</a>.
+      </div>
+      <ul class="list" style="margin-top:26px">
+        <li><strong>Требования</strong> — Windows x64. Linux и macOS не собирались и не тестировались.</li>
+        <li><strong>Для сборки из исходников</strong> — Node.js 20.19+ или 22.12+, Rust 1.89+.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>canger 0.1.0 · MIT</span>
+    <a href="https://github.com/Huiotca22/Canger">Репозиторий</a>
+    <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Релиз</a>
+    <a href="https://github.com/Huiotca22/Canger/blob/main/CHANGELOG.md">Изменения</a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('section, .shot, .files > .file').forEach(function (el) {
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  })();
+
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-copy');
+      var done = function () {
+        var old = btn.textContent;
+        btn.textContent = 'Скопировано';
+        setTimeout(function () { btn.textContent = old; }, 1600);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(value).then(done);
+      } else {
+        var area = document.createElement('textarea');
+        area.value = value;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        try { document.execCommand('copy'); done(); } catch (err) { }
+        document.body.removeChild(area);
+      }
+    });
+  });
+</script>
+</body>
+</html>
