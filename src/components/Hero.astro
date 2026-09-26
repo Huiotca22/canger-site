@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const release = 'https://github.com/Huiotca22/Canger/releases/tag/v0.1.0';
 const repo = 'https://github.com/Huiotca22/Canger';
 ---
@@ -28,7 +29,7 @@ const repo = 'https://github.com/Huiotca22/Canger';
     <figure class="hero-shot">
       <div class="screen">
         <img
-          src="/app-home.png"
+          src={`${base}app-home.png`}
           width="700"
           height="400"
           alt="Главное окно canger: слева вертикальный рельс разделов, справа карточка новости и кнопка «Играть»"
