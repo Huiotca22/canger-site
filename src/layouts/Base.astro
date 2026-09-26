@@ -37,6 +37,27 @@ const canonical = 'https://huiotca22.github.io/canger-site/';
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="sitemap" href={`${base}sitemap.xml`} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'canger',
+      applicationCategory: 'GameApplication',
+      operatingSystem: 'Windows 10, Windows 11',
+      description,
+      url: canonical,
+      downloadUrl: 'https://github.com/Huiotca22/Canger/releases/tag/v0.1.0',
+      softwareVersion: '0.1.0',
+      license: 'https://opensource.org/licenses/MIT',
+      author: { '@type': 'Person', name: 'Huiotca22' },
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'RUB' },
+      featureList: [
+        'Vanilla, Fabric, Forge и NeoForge',
+        'Отдельная папка mods для каждой версии',
+        'Автоматическая загрузка Java',
+        'Проверка несовместимости модов до запуска',
+      ],
+    })} />
     <script is:inline>
       document.documentElement.classList.remove('no-js');
     </script>
