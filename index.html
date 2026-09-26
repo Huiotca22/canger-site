@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>canger — лаунчер Minecraft с отдельной папкой модов на каждую версию</title>
-<meta name="description" content="canger — настольный лаунчер Minecraft на Tauri 2 и Rust. Vanilla, Fabric, Forge и NeoForge из официальных источников, Java подбирается автоматически, у каждой версии своя папка с модами, мирами и настройками. Windows x64.">
+<title>canger вЂ” Р»Р°СѓРЅС‡РµСЂ Minecraft СЃ РѕС‚РґРµР»СЊРЅРѕР№ РїР°РїРєРѕР№ РјРѕРґРѕРІ РЅР° РєР°Р¶РґСѓСЋ РІРµСЂСЃРёСЋ</title>
+<meta name="description" content="canger вЂ” РЅР°СЃС‚РѕР»СЊРЅС‹Р№ Р»Р°СѓРЅС‡РµСЂ Minecraft РЅР° Tauri 2 Рё Rust. Vanilla, Fabric, Forge Рё NeoForge РёР· РѕС„РёС†РёР°Р»СЊРЅС‹С… РёСЃС‚РѕС‡РЅРёРєРѕРІ, Java РїРѕРґР±РёСЂР°РµС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё, Сѓ РєР°Р¶РґРѕР№ РІРµСЂСЃРёРё СЃРІРѕСЏ РїР°РїРєР° СЃ РјРѕРґР°РјРё, РјРёСЂР°РјРё Рё РЅР°СЃС‚СЂРѕР№РєР°РјРё. Windows x64.">
 <meta name="theme-color" content="#1e151a">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:title" content="canger — лаунчер Minecraft">
-<meta property="og:description" content="У каждой версии своя папка с модами. Vanilla, Fabric, Forge и NeoForge, Java подбирается сама. Windows x64.">
+<meta property="og:title" content="canger вЂ” Р»Р°СѓРЅС‡РµСЂ Minecraft">
+<meta property="og:description" content="РЈ РєР°Р¶РґРѕР№ РІРµСЂСЃРёРё СЃРІРѕСЏ РїР°РїРєР° СЃ РјРѕРґР°РјРё. Vanilla, Fabric, Forge Рё NeoForge, Java РїРѕРґР±РёСЂР°РµС‚СЃСЏ СЃР°РјР°. Windows x64.">
 <meta property="og:image" content="assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -175,7 +175,7 @@
   }
   .list { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
   .list li { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); }
-  .list li::before { content: "▸"; color: var(--rose); font-weight: 700; line-height: 1.5; }
+  .list li::before { content: "в–ё"; color: var(--rose); font-weight: 700; line-height: 1.5; }
   .list strong { color: var(--text); font-weight: 650; }
 
   footer { padding: 44px 0 60px; border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; }
@@ -202,10 +202,10 @@
   <div class="wrap nav">
     <a class="brand" href="#top"><img src="assets/icon.svg" alt=""> canger</a>
     <nav class="nav-links">
-      <a href="#why">Зачем</a>
-      <a href="#download">Скачать</a>
+      <a href="#why">Р—Р°С‡РµРј</a>
+      <a href="#download">РЎРєР°С‡Р°С‚СЊ</a>
       <a href="https://github.com/Huiotca22/Canger">GitHub</a>
-      <a class="btn-nav" href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Скачать 0.1.0</a>
+      <a class="btn-nav" href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">РЎРєР°С‡Р°С‚СЊ 0.1.0</a>
     </nav>
   </div>
 </header>
@@ -213,141 +213,141 @@
 <main id="top">
   <div class="wrap">
     <div class="hero">
-      <span class="badge"><span class="dot"></span> версия 0.1.0 · Windows x64 · MIT</span>
-      <h1>У каждой версии Minecraft <em>своя папка</em> с модами.</h1>
+      <span class="badge"><span class="dot"></span> РІРµСЂСЃРёСЏ 0.1.0 В· Windows x64 В· MIT</span>
+      <h1>РЈ РєР°Р¶РґРѕР№ РІРµСЂСЃРёРё Minecraft <em>СЃРІРѕСЏ РїР°РїРєР°</em> СЃ РјРѕРґР°РјРё.</h1>
       <p class="lede">
-        canger ставит Vanilla, Fabric, Forge и NeoForge из официальных источников,
-        сам подбирает подходящую Java и запускает игру с модами только той версии,
-        которую вы выбрали. Профилей нет — есть версии.
+        canger СЃС‚Р°РІРёС‚ Vanilla, Fabric, Forge Рё NeoForge РёР· РѕС„РёС†РёР°Р»СЊРЅС‹С… РёСЃС‚РѕС‡РЅРёРєРѕРІ,
+        СЃР°Рј РїРѕРґР±РёСЂР°РµС‚ РїРѕРґС…РѕРґСЏС‰СѓСЋ Java Рё Р·Р°РїСѓСЃРєР°РµС‚ РёРіСЂСѓ СЃ РјРѕРґР°РјРё С‚РѕР»СЊРєРѕ С‚РѕР№ РІРµСЂСЃРёРё,
+        РєРѕС‚РѕСЂСѓСЋ РІС‹ РІС‹Р±СЂР°Р»Рё. РџСЂРѕС„РёР»РµР№ РЅРµС‚ вЂ” РµСЃС‚СЊ РІРµСЂСЃРёРё.
       </p>
       <div class="cta">
-        <a class="btn btn-primary" href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Скачать 0.1.0</a>
-        <a class="btn btn-ghost" href="https://github.com/Huiotca22/Canger">Исходный код</a>
+        <a class="btn btn-primary" href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">РЎРєР°С‡Р°С‚СЊ 0.1.0</a>
+        <a class="btn btn-ghost" href="https://github.com/Huiotca22/Canger">РСЃС…РѕРґРЅС‹Р№ РєРѕРґ</a>
       </div>
-      <p class="note">Установщик 3,1 МБ. Ничего доустанавливать не нужно: Java подбирается автоматически.</p>
+      <p class="note">РЈСЃС‚Р°РЅРѕРІС‰РёРє 3,1 РњР‘. РќРёС‡РµРіРѕ РґРѕСѓСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊ РЅРµ РЅСѓР¶РЅРѕ: Java РїРѕРґР±РёСЂР°РµС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё.</p>
 
       <figure class="shot">
-        <img src="assets/app-home.png" width="700" height="400" alt="Главное окно canger: каталог версий, новости и кнопка «Играть»">
-        <figcaption>Главное окно. Настоящий скриншот собранного приложения, 700×400.</figcaption>
+        <img src="assets/app-home.png" width="700" height="400" alt="Р“Р»Р°РІРЅРѕРµ РѕРєРЅРѕ canger: РєР°С‚Р°Р»РѕРі РІРµСЂСЃРёР№, РЅРѕРІРѕСЃС‚Рё Рё РєРЅРѕРїРєР° В«РРіСЂР°С‚СЊВ»">
+        <figcaption>Р“Р»Р°РІРЅРѕРµ РѕРєРЅРѕ. РќР°СЃС‚РѕСЏС‰РёР№ СЃРєСЂРёРЅС€РѕС‚ СЃРѕР±СЂР°РЅРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ, 700Г—400.</figcaption>
       </figure>
     </div>
   </div>
 
   <div class="wrap">
     <section id="why">
-      <h2>Почему версии, а не профили</h2>
+      <h2>РџРѕС‡РµРјСѓ РІРµСЂСЃРёРё, Р° РЅРµ РїСЂРѕС„РёР»Рё</h2>
       <p class="sub">
-        Один профиль на все версии — это путь к ошибке «Incompatible mods found»:
-        мод от Fabric 1.21 не запускается на 26.3. В canger игровая папка — это сама
-        версия, поэтому чужие моды в неё физически не попадают.
+        РћРґРёРЅ РїСЂРѕС„РёР»СЊ РЅР° РІСЃРµ РІРµСЂСЃРёРё вЂ” СЌС‚Рѕ РїСѓС‚СЊ Рє РѕС€РёР±РєРµ В«Incompatible mods foundВ»:
+        РјРѕРґ РѕС‚ Fabric 1.21 РЅРµ Р·Р°РїСѓСЃРєР°РµС‚СЃСЏ РЅР° 26.3. Р’ canger РёРіСЂРѕРІР°СЏ РїР°РїРєР° вЂ” СЌС‚Рѕ СЃР°РјР°
+        РІРµСЂСЃРёСЏ, РїРѕСЌС‚РѕРјСѓ С‡СѓР¶РёРµ РјРѕРґС‹ РІ РЅРµС‘ С„РёР·РёС‡РµСЃРєРё РЅРµ РїРѕРїР°РґР°СЋС‚.
       </p>
       <div class="cards">
         <div class="card">
-          <h3>Моды живут в своей папке</h3>
-          <p><code>versions/&lt;id&gt;/mods</code> — отдельная папка для каждой технической версии. Копировать моды при переключении не нужно.</p>
+          <h3>РњРѕРґС‹ Р¶РёРІСѓС‚ РІ СЃРІРѕРµР№ РїР°РїРєРµ</h3>
+          <p><code>versions/&lt;id&gt;/mods</code> вЂ” РѕС‚РґРµР»СЊРЅР°СЏ РїР°РїРєР° РґР»СЏ РєР°Р¶РґРѕР№ С‚РµС…РЅРёС‡РµСЃРєРѕР№ РІРµСЂСЃРёРё. РљРѕРїРёСЂРѕРІР°С‚СЊ РјРѕРґС‹ РїСЂРё РїРµСЂРµРєР»СЋС‡РµРЅРёРё РЅРµ РЅСѓР¶РЅРѕ.</p>
         </div>
         <div class="card">
-          <h3>Миры и настройки не смешиваются</h3>
-          <p>Свои <code>saves</code>, <code>config</code>, <code>resourcepacks</code>, <code>shaderpacks</code>, <code>logs</code> и <code>options.txt</code> у каждой версии.</p>
+          <h3>РњРёСЂС‹ Рё РЅР°СЃС‚СЂРѕР№РєРё РЅРµ СЃРјРµС€РёРІР°СЋС‚СЃСЏ</h3>
+          <p>РЎРІРѕРё <code>saves</code>, <code>config</code>, <code>resourcepacks</code>, <code>shaderpacks</code>, <code>logs</code> Рё <code>options.txt</code> Сѓ РєР°Р¶РґРѕР№ РІРµСЂСЃРёРё.</p>
         </div>
         <div class="card">
-          <h3>Несовместимые моды ловятся до запуска</h3>
-          <p>Перед стартом Java проверяется <code>fabric.mod.json</code>: если мод требует другую версию Minecraft или другой диапазон Java — запуск блокируется с понятным текстом.</p>
+          <h3>РќРµСЃРѕРІРјРµСЃС‚РёРјС‹Рµ РјРѕРґС‹ Р»РѕРІСЏС‚СЃСЏ РґРѕ Р·Р°РїСѓСЃРєР°</h3>
+          <p>РџРµСЂРµРґ СЃС‚Р°СЂС‚РѕРј Java РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ <code>fabric.mod.json</code>: РµСЃР»Рё РјРѕРґ С‚СЂРµР±СѓРµС‚ РґСЂСѓРіСѓСЋ РІРµСЂСЃРёСЋ Minecraft РёР»Рё РґСЂСѓРіРѕР№ РґРёР°РїР°Р·РѕРЅ Java вЂ” Р·Р°РїСѓСЃРє Р±Р»РѕРєРёСЂСѓРµС‚СЃСЏ СЃ РїРѕРЅСЏС‚РЅС‹Рј С‚РµРєСЃС‚РѕРј.</p>
         </div>
         <div class="card">
-          <h3>Java подбирается сама</h3>
-          <p>Нужный мажор версии скачивается с Adoptium и проверяется по SHA-256. Ставить Java вручную не нужно.</p>
+          <h3>Java РїРѕРґР±РёСЂР°РµС‚СЃСЏ СЃР°РјР°</h3>
+          <p>РќСѓР¶РЅС‹Р№ РјР°Р¶РѕСЂ РІРµСЂСЃРёРё СЃРєР°С‡РёРІР°РµС‚СЃСЏ СЃ Adoptium Рё РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ РїРѕ SHA-256. РЎС‚Р°РІРёС‚СЊ Java РІСЂСѓС‡РЅСѓСЋ РЅРµ РЅСѓР¶РЅРѕ.</p>
         </div>
         <div class="card">
-          <h3>Общее не дублируется</h3>
-          <p><code>libraries</code>, <code>assets</code> и <code>objects</code> хранятся один раз на всех версиях, а не копируются в каждую папку.</p>
+          <h3>РћР±С‰РµРµ РЅРµ РґСѓР±Р»РёСЂСѓРµС‚СЃСЏ</h3>
+          <p><code>libraries</code>, <code>assets</code> Рё <code>objects</code> С…СЂР°РЅСЏС‚СЃСЏ РѕРґРёРЅ СЂР°Р· РЅР° РІСЃРµС… РІРµСЂСЃРёСЏС…, Р° РЅРµ РєРѕРїРёСЂСѓСЋС‚СЃСЏ РІ РєР°Р¶РґСѓСЋ РїР°РїРєСѓ.</p>
         </div>
         <div class="card">
-          <h3>Скачивания проверяются</h3>
-          <p>Installer-ы Forge и NeoForge, клиент Mojang, библиотеки и ассеты проверяются по контрольным суммам. Загрузка идёт во временный файл и переименовывается атомарно.</p>
+          <h3>РЎРєР°С‡РёРІР°РЅРёСЏ РїСЂРѕРІРµСЂСЏСЋС‚СЃСЏ</h3>
+          <p>Installer-С‹ Forge Рё NeoForge, РєР»РёРµРЅС‚ Mojang, Р±РёР±Р»РёРѕС‚РµРєРё Рё Р°СЃСЃРµС‚С‹ РїСЂРѕРІРµСЂСЏСЋС‚СЃСЏ РїРѕ РєРѕРЅС‚СЂРѕР»СЊРЅС‹Рј СЃСѓРјРјР°Рј. Р—Р°РіСЂСѓР·РєР° РёРґС‘С‚ РІРѕ РІСЂРµРјРµРЅРЅС‹Р№ С„Р°Р№Р» Рё РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµС‚СЃСЏ Р°С‚РѕРјР°СЂРЅРѕ.</p>
         </div>
       </div>
     </section>
 
     <section id="layout">
-      <h2>Как это устроено на диске</h2>
-      <p class="sub">Игровой каталог версии — это сам <code>versions/&lt;id&gt;</code>, он и передаётся как <code>--gameDir</code>.</p>
+      <h2>РљР°Рє СЌС‚Рѕ СѓСЃС‚СЂРѕРµРЅРѕ РЅР° РґРёСЃРєРµ</h2>
+      <p class="sub">РРіСЂРѕРІРѕР№ РєР°С‚Р°Р»РѕРі РІРµСЂСЃРёРё вЂ” СЌС‚Рѕ СЃР°Рј <code>versions/&lt;id&gt;</code>, РѕРЅ Рё РїРµСЂРµРґР°С‘С‚СЃСЏ РєР°Рє <code>--gameDir</code>.</p>
       <pre class="tree"><span class="c">%APPDATA%\.minecraft\</span>
-  versions\&lt;id&gt;\          <span class="c">JSON, JAR и natives этой версии</span>
-  versions\&lt;id&gt;\mods\     <span class="n">моды только этой версии</span>
-  versions\&lt;id&gt;\saves\    <span class="n">миры только этой версии</span>
-  versions\&lt;id&gt;\config\   <span class="n">конфиги модов</span>
+  versions\&lt;id&gt;\          <span class="c">JSON, JAR Рё natives СЌС‚РѕР№ РІРµСЂСЃРёРё</span>
+  versions\&lt;id&gt;\mods\     <span class="n">РјРѕРґС‹ С‚РѕР»СЊРєРѕ СЌС‚РѕР№ РІРµСЂСЃРёРё</span>
+  versions\&lt;id&gt;\saves\    <span class="n">РјРёСЂС‹ С‚РѕР»СЊРєРѕ СЌС‚РѕР№ РІРµСЂСЃРёРё</span>
+  versions\&lt;id&gt;\config\   <span class="n">РєРѕРЅС„РёРіРё РјРѕРґРѕРІ</span>
   versions\&lt;id&gt;\options.txt
-  libraries\               <span class="c">общие библиотеки</span>
-  assets\                  <span class="c">общие ресурсы</span>
+  libraries\               <span class="c">РѕР±С‰РёРµ Р±РёР±Р»РёРѕС‚РµРєРё</span>
+  assets\                  <span class="c">РѕР±С‰РёРµ СЂРµСЃСѓСЂСЃС‹</span>
   runtime\                 <span class="c">Java</span></pre>
       <p class="note" style="margin-top:16px">
-        Старые моды из общего <code>.minecraft\mods</code> автоматически не переносятся — это сделано намеренно,
-        чтобы не подмешать несовместимый набор. Скопируйте нужное в <code>versions\&lt;id&gt;\mods</code> руками.
+        РЎС‚Р°СЂС‹Рµ РјРѕРґС‹ РёР· РѕР±С‰РµРіРѕ <code>.minecraft\mods</code> Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РЅРµ РїРµСЂРµРЅРѕСЃСЏС‚СЃСЏ вЂ” СЌС‚Рѕ СЃРґРµР»Р°РЅРѕ РЅР°РјРµСЂРµРЅРЅРѕ,
+        С‡С‚РѕР±С‹ РЅРµ РїРѕРґРјРµС€Р°С‚СЊ РЅРµСЃРѕРІРјРµСЃС‚РёРјС‹Р№ РЅР°Р±РѕСЂ. РЎРєРѕРїРёСЂСѓР№С‚Рµ РЅСѓР¶РЅРѕРµ РІ <code>versions\&lt;id&gt;\mods</code> СЂСѓРєР°РјРё.
       </p>
     </section>
 
     <section id="loaders">
-      <h2>Что поддерживается</h2>
-      <p class="sub">Каталог собирается из официальных manifest-файлов, а не из захардкоженного списка.</p>
+      <h2>Р§С‚Рѕ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ</h2>
+      <p class="sub">РљР°С‚Р°Р»РѕРі СЃРѕР±РёСЂР°РµС‚СЃСЏ РёР· РѕС„РёС†РёР°Р»СЊРЅС‹С… manifest-С„Р°Р№Р»РѕРІ, Р° РЅРµ РёР· Р·Р°С…Р°СЂРґРєРѕР¶РµРЅРЅРѕРіРѕ СЃРїРёСЃРєР°.</p>
       <ul class="list">
-        <li><strong>Vanilla и снапшоты</strong> — полный список релизов и снапшотов Mojang.</li>
-        <li><strong>Fabric</strong> — одна последняя совместимая сборка на каждую версию Minecraft.</li>
-        <li><strong>Forge 1.13+</strong> — автоматическая установка через официальный installer с проверкой SHA-1 и валидацией созданного профиля.</li>
-        <li><strong>NeoForge</strong> — последняя стабильная сборка для точной версии Minecraft; installer проверяется по SHA-256.</li>
-        <li><strong>Моды</strong> — каталог Modrinth, установка по контрольной сумме, блокировка несовместимых файлов до запуска.</li>
+        <li><strong>Vanilla Рё СЃРЅР°РїС€РѕС‚С‹</strong> вЂ” РїРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СЂРµР»РёР·РѕРІ Рё СЃРЅР°РїС€РѕС‚РѕРІ Mojang.</li>
+        <li><strong>Fabric</strong> вЂ” РѕРґРЅР° РїРѕСЃР»РµРґРЅСЏСЏ СЃРѕРІРјРµСЃС‚РёРјР°СЏ СЃР±РѕСЂРєР° РЅР° РєР°Р¶РґСѓСЋ РІРµСЂСЃРёСЋ Minecraft.</li>
+        <li><strong>Forge 1.13+</strong> вЂ” Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ СѓСЃС‚Р°РЅРѕРІРєР° С‡РµСЂРµР· РѕС„РёС†РёР°Р»СЊРЅС‹Р№ installer СЃ РїСЂРѕРІРµСЂРєРѕР№ SHA-1 Рё РІР°Р»РёРґР°С†РёРµР№ СЃРѕР·РґР°РЅРЅРѕРіРѕ РїСЂРѕС„РёР»СЏ.</li>
+        <li><strong>NeoForge</strong> вЂ” РїРѕСЃР»РµРґРЅСЏСЏ СЃС‚Р°Р±РёР»СЊРЅР°СЏ СЃР±РѕСЂРєР° РґР»СЏ С‚РѕС‡РЅРѕР№ РІРµСЂСЃРёРё Minecraft; installer РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ РїРѕ SHA-256.</li>
+        <li><strong>РњРѕРґС‹</strong> вЂ” РєР°С‚Р°Р»РѕРі Modrinth, СѓСЃС‚Р°РЅРѕРІРєР° РїРѕ РєРѕРЅС‚СЂРѕР»СЊРЅРѕР№ СЃСѓРјРјРµ, Р±Р»РѕРєРёСЂРѕРІРєР° РЅРµСЃРѕРІРјРµСЃС‚РёРјС‹С… С„Р°Р№Р»РѕРІ РґРѕ Р·Р°РїСѓСЃРєР°.</li>
       </ul>
     </section>
 
     <section id="shots">
-      <h2>Приложение</h2>
-      <p class="sub">Оба скриншота сняты с собранного <code>canger.exe</code>, а не нарисованы.</p>
+      <h2>РџСЂРёР»РѕР¶РµРЅРёРµ</h2>
+      <p class="sub">РћР±Р° СЃРєСЂРёРЅС€РѕС‚Р° СЃРЅСЏС‚С‹ СЃ СЃРѕР±СЂР°РЅРЅРѕРіРѕ <code>canger.exe</code>, Р° РЅРµ РЅР°СЂРёСЃРѕРІР°РЅС‹.</p>
       <div class="cards">
         <figure class="card" style="margin:0">
-          <img src="assets/app-versions.png" width="700" height="400" alt="Вкладка «Версии»: каталог из 802 версий с фильтрами и карточками Fabric и Forge" style="display:block;width:100%;border-radius:12px">
+          <img src="assets/app-versions.png" width="700" height="400" alt="Р’РєР»Р°РґРєР° В«Р’РµСЂСЃРёРёВ»: РєР°С‚Р°Р»РѕРі РёР· 802 РІРµСЂСЃРёР№ СЃ С„РёР»СЊС‚СЂР°РјРё Рё РєР°СЂС‚РѕС‡РєР°РјРё Fabric Рё Forge" style="display:block;width:100%;border-radius:12px">
           <figcaption style="margin-top:12px;font-size:13.5px;color:var(--dim)">
-            Вкладка «Версии»: каталог с фильтрами, карточки Fabric и Forge, отметки об установленном.
+            Р’РєР»Р°РґРєР° В«Р’РµСЂСЃРёРёВ»: РєР°С‚Р°Р»РѕРі СЃ С„РёР»СЊС‚СЂР°РјРё, РєР°СЂС‚РѕС‡РєРё Fabric Рё Forge, РѕС‚РјРµС‚РєРё РѕР± СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅРѕРј.
           </figcaption>
         </figure>
       </div>
     </section>
 
     <section id="download">
-      <h2>Скачать 0.1.0</h2>
-      <p class="sub">Файлы из <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">релиза на GitHub</a>. SHA-256 — для проверки целостности.</p>
+      <h2>РЎРєР°С‡Р°С‚СЊ 0.1.0</h2>
+      <p class="sub">Р¤Р°Р№Р»С‹ РёР· <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">СЂРµР»РёР·Р° РЅР° GitHub</a>. SHA-256 вЂ” РґР»СЏ РїСЂРѕРІРµСЂРєРё С†РµР»РѕСЃС‚РЅРѕСЃС‚Рё.</p>
       <div class="files">
         <div class="file">
           <div class="meta">
-            <div class="name">canger_0.1.0_x64-setup.exe <span style="color:var(--dim);font-weight:400">· 3,1 МБ</span></div>
-            <div class="sum">48f0b26aca5a892121739ad57dae063a786d2d81fe933f0dfd004c5b4a98ac12</div>
+            <div class="name">canger_0.1.0_x64-setup.exe <span style="color:var(--dim);font-weight:400">В· 3,1 РњР‘</span></div>
+            <div class="sum">7de5ac0d764d1c5eb652e5926060abdf5497a3c00fa2530b16bf35fec368492d</div>
           </div>
-          <button class="copy" data-copy="48f0b26aca5a892121739ad57dae063a786d2d81fe933f0dfd004c5b4a98ac12">Скопировать</button>
+          <button class="copy" data-copy="7de5ac0d764d1c5eb652e5926060abdf5497a3c00fa2530b16bf35fec368492d">РЎРєРѕРїРёСЂРѕРІР°С‚СЊ</button>
           <a class="dl" href="https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger_0.1.0_x64-setup.exe">NSIS</a>
         </div>
         <div class="file">
           <div class="meta">
-            <div class="name">canger_0.1.0_x64_en-US.msi <span style="color:var(--dim);font-weight:400">· 4,4 МБ</span></div>
-            <div class="sum">a874a9251da3ce54296d086d60fcaefbee6c3870148353b250469e8b812c1275</div>
+            <div class="name">canger_0.1.0_x64_en-US.msi <span style="color:var(--dim);font-weight:400">В· 4,4 РњР‘</span></div>
+            <div class="sum">cee2f90b5cad8f06d92b496d115557a9b11fa7eed268a4528a4975d7fa866883</div>
           </div>
-          <button class="copy" data-copy="a874a9251da3ce54296d086d60fcaefbee6c3870148353b250469e8b812c1275">Скопировать</button>
+          <button class="copy" data-copy="cee2f90b5cad8f06d92b496d115557a9b11fa7eed268a4528a4975d7fa866883">РЎРєРѕРїРёСЂРѕРІР°С‚СЊ</button>
           <a class="dl" href="https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger_0.1.0_x64_en-US.msi">MSI</a>
         </div>
         <div class="file">
           <div class="meta">
-            <div class="name">canger.exe <span style="color:var(--dim);font-weight:400">· 12,7 МБ · portable</span></div>
-            <div class="sum">a35544c17aecad5abf9fc674e52efb49e0642a280a988e35c9768fbbdbc5e606</div>
+            <div class="name">canger.exe <span style="color:var(--dim);font-weight:400">В· 12,7 РњР‘ В· portable</span></div>
+            <div class="sum">8b41ef2417443614c609020641d431194203f303c252a9a2bc643f3c53287b4b</div>
           </div>
-          <button class="copy" data-copy="a35544c17aecad5abf9fc674e52efb49e0642a280a988e35c9768fbbdbc5e606">Скопировать</button>
+          <button class="copy" data-copy="8b41ef2417443614c609020641d431194203f303c252a9a2bc643f3c53287b4b">РЎРєРѕРїРёСЂРѕРІР°С‚СЊ</button>
           <a class="dl" href="https://github.com/Huiotca22/Canger/releases/download/v0.1.0/canger.exe">Portable</a>
         </div>
       </div>
       <div class="warn">
-        Установщики не подписаны Authenticode, поэтому Windows SmartScreen может показать предупреждение.
-        Проверьте SHA-256 — значения выше совпадают с <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">страницей релиза</a>.
+        РЈСЃС‚Р°РЅРѕРІС‰РёРєРё РЅРµ РїРѕРґРїРёСЃР°РЅС‹ Authenticode, РїРѕСЌС‚РѕРјСѓ Windows SmartScreen РјРѕР¶РµС‚ РїРѕРєР°Р·Р°С‚СЊ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ.
+        РџСЂРѕРІРµСЂСЊС‚Рµ SHA-256 вЂ” Р·РЅР°С‡РµРЅРёСЏ РІС‹С€Рµ СЃРѕРІРїР°РґР°СЋС‚ СЃ <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">СЃС‚СЂР°РЅРёС†РµР№ СЂРµР»РёР·Р°</a>.
       </div>
       <ul class="list" style="margin-top:26px">
-        <li><strong>Требования</strong> — Windows x64. Linux и macOS не собирались и не тестировались.</li>
-        <li><strong>Для сборки из исходников</strong> — Node.js 20.19+ или 22.12+, Rust 1.89+.</li>
+        <li><strong>РўСЂРµР±РѕРІР°РЅРёСЏ</strong> вЂ” Windows x64. Linux Рё macOS РЅРµ СЃРѕР±РёСЂР°Р»РёСЃСЊ Рё РЅРµ С‚РµСЃС‚РёСЂРѕРІР°Р»РёСЃСЊ.</li>
+        <li><strong>Р”Р»СЏ СЃР±РѕСЂРєРё РёР· РёСЃС…РѕРґРЅРёРєРѕРІ</strong> вЂ” Node.js 20.19+ РёР»Рё 22.12+, Rust 1.89+.</li>
       </ul>
     </section>
   </div>
@@ -355,10 +355,10 @@
 
 <footer>
   <div class="wrap foot">
-    <span>canger 0.1.0 · MIT</span>
-    <a href="https://github.com/Huiotca22/Canger">Репозиторий</a>
-    <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Релиз</a>
-    <a href="https://github.com/Huiotca22/Canger/blob/main/CHANGELOG.md">Изменения</a>
+    <span>canger 0.1.0 В· MIT</span>
+    <a href="https://github.com/Huiotca22/Canger">Р РµРїРѕР·РёС‚РѕСЂРёР№</a>
+    <a href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Р РµР»РёР·</a>
+    <a href="https://github.com/Huiotca22/Canger/blob/main/CHANGELOG.md">РР·РјРµРЅРµРЅРёСЏ</a>
   </div>
 </footer>
 
@@ -389,7 +389,7 @@
       var value = btn.getAttribute('data-copy');
       var done = function () {
         var old = btn.textContent;
-        btn.textContent = 'Скопировано';
+        btn.textContent = 'РЎРєРѕРїРёСЂРѕРІР°РЅРѕ';
         setTimeout(function () { btn.textContent = old; }, 1600);
       };
       if (navigator.clipboard && window.isSecureContext) {
