@@ -38,8 +38,8 @@ const loaders = [
     </p>
 
     <ul class="loader-list">
-      {loaders.map((loader) => (
-        <li>
+      {loaders.map((loader, index) => (
+        <li style={`--d:${index * 60}ms`}>
           <div class="loader-name">
             <h3>{loader.name}</h3>
             <span class="mono">{loader.tag}</span>

@@ -24,7 +24,33 @@ const links = [
     </nav>
     <a class="btn btn--action head-cta" href="https://github.com/Huiotca22/Canger/releases/tag/v0.1.0">Скачать 0.1.0</a>
   </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 </header>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('.scroll-progress');
+
+  if (bar) {
+    let queued = false;
+
+    const update = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+      bar.style.setProperty('--progress', ratio.toFixed(4));
+      queued = false;
+    };
+
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+  }
+</script>
 
 <style>
   .site-head {
@@ -35,6 +61,7 @@ const links = [
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--hair);
   }
+
   .head-row {
     display: flex;
     align-items: center;

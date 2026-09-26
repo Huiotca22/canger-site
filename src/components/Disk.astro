@@ -27,8 +27,11 @@ const tree = [
         <span class="term-title mono">.minecraft</span>
       </div>
       <ul>
-        {tree.map((row) => (
-          <li style={`--depth:${row.depth}`} class={row.tone === 'hot' ? 'hot' : ''}>
+        {tree.map((row, index) => (
+          <li
+            style={`--depth:${row.depth}; --d:${index * 70}ms`}
+            class={row.tone === 'hot' ? 'hot' : ''}
+          >
             <code>{row.text}</code>
             <span class="mono note">{row.note}</span>
           </li>

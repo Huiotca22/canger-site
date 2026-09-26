@@ -1,0 +1,252 @@
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-block: cubic-bezier(0.34, 1.2, 0.44, 1);
+  interpolate-size: allow-keywords;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes grow-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pulse-ok {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 55%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+}
+
+@keyframes sheen {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal='left'] {
+  transform: translateX(-26px);
+}
+
+[data-reveal='right'] {
+  transform: translateX(26px);
+}
+
+.hero .eyebrow {
+  animation: rise 0.7s var(--ease-out) 60ms both;
+}
+
+.hero h1 {
+  animation: rise 0.8s var(--ease-out) 140ms both;
+}
+
+.hero .lede {
+  animation: rise 0.8s var(--ease-out) 240ms both;
+}
+
+.hero-actions {
+  animation: rise 0.8s var(--ease-out) 340ms both;
+}
+
+.hero-fine {
+  animation: rise 0.8s var(--ease-out) 430ms both;
+}
+
+.hero-shot {
+  animation: pop 1s var(--ease-block) 260ms both;
+}
+
+.hero .facts {
+  animation: rise 0.9s var(--ease-out) 520ms both;
+}
+
+.term li {
+  transform-origin: left center;
+}
+
+.term li.is-in {
+  animation: grow-bar 0.5s var(--ease-out) var(--d, 0ms) both;
+}
+
+details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.32s var(--ease-out),
+    content-visibility 0.32s allow-discrete;
+}
+
+details[open]::details-content {
+  block-size: auto;
+}
+
+@starting-style {
+  details[open]::details-content {
+    block-size: 0;
+  }
+}
+
+.hash button:disabled {
+  animation: pulse-ok 0.6s var(--ease-out);
+}
+
+.btn--action {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn--action::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+}
+
+.btn--action:hover::after,
+.btn--action:focus-visible::after {
+  animation: sheen 0.75s var(--ease-out);
+}
+
+.facts > div {
+  position: relative;
+}
+
+.facts > div::before {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: var(--action);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out) var(--d, 0ms);
+}
+
+.facts > div.is-in::before {
+  transform: scaleX(1);
+}
+
+.loader-list li {
+  position: relative;
+}
+
+.loader-list li::before {
+  content: '';
+  position: absolute;
+  inset: -1px auto -1px 0;
+  width: 2px;
+  background: var(--action);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s var(--ease-out) var(--d, 0ms);
+}
+
+.loader-list li.is-in::before {
+  transform: scaleY(1);
+}
+
+.scroll-progress {
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 2px;
+  background: var(--action);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
+  transition: transform 0.1s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero .eyebrow,
+  .hero h1,
+  .hero .lede,
+  .hero-actions,
+  .hero-fine,
+  .hero-shot,
+  .hero .facts {
+    animation: none;
+  }
+  .term li.is-in,
+  .facts > div.is-in::before,
+  .loader-list li.is-in::before {
+    animation: none;
+    transform: none;
+  }
+  details::details-content {
+    transition: none;
+  }
+  .scroll-progress {
+    display: none;
+  }
+}

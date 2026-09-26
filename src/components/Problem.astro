@@ -24,7 +24,7 @@ const canger = [
     </p>
 
     <div class="compare">
-      <div class="col col--bad">
+      <div class="col col--bad" data-reveal="left">
         <h3 class="mono">обычный лаунчер</h3>
         <dl>
           {usual.map(([term, desc]) => (
@@ -35,7 +35,7 @@ const canger = [
           ))}
         </dl>
       </div>
-      <div class="col col--good">
+      <div class="col col--good" data-reveal="right" style="--d: 110ms">
         <h3 class="mono">canger</h3>
         <dl>
           {canger.map(([term, desc]) => (
